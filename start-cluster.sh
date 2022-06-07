@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export KAFKA_HOME=/home/dthibau/Formations/Kafka/MyWork/kafka_2.12-2.4.1
+export KAFKA_HOME=/home/dthibau/Formations/Kafka/MyWork/kafka_2.13-3.2.0
 export KAFKA_CLUSTER=/home/dthibau/Formations/Kafka/github/solutions/kafka-cluster
 export KAFKA_LOGS=/home/dthibau/Formations/Kafka/MyWork/kafka-logs
 
