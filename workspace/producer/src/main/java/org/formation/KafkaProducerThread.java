@@ -92,20 +92,22 @@ public class KafkaProducerThread implements Runnable {
 	private void _initProducer() {
 		Properties kafkaProps = new Properties();
 		kafkaProps.put("bootstrap.servers",
-		"localhost:9192,localhost:9193");
+		"localhost:9193,localhost:9192");
 		kafkaProps.put("key.serializer",
 		"org.apache.kafka.common.serialization.StringSerializer");
 		kafkaProps.put("value.serializer",
 		"org.formation.model.JsonSerializer");
-		kafkaProps.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG,true);
-		kafkaProps.put(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION,4);
-		kafkaProps.put(ProducerConfig.RETRIES_CONFIG,Integer.MAX_VALUE);
-		kafkaProps.put(ProducerConfig.ACKS_CONFIG,"0");
+		kafkaProps.put("ssl.keystore.location","/home/zericco/src/formation_kafka/ssl/client.keystore.jks");
+		kafkaProps.put("ssl.keystore.password","123456");
+		kafkaProps.put("ssl.key.password","123456");
+		kafkaProps.put("security.protocol","SSL");
+		kafkaProps.put("ssl.truststore.location","/home/zericco/src/formation_kafka/ssl/client.truststore.jks");
+		kafkaProps.put("ssl.truststore.password","123456");
+		kafkaProps.put("ssl.endpoint.identification.algorithm","");
+
+
 		if ( this.ackMode == AckMode.ALL )
 			kafkaProps.put(ProducerConfig.ACKS_CONFIG, "all");
-		kafkaProps.put("security.protocol","SSL");
-		kafkaProps.put("ssl.truststore.location","/home/dthibau/Formations/Kafka/github/solutions/ssl/client.truststore.jks");
-		kafkaProps.put("ssl.truststore.password","secret");
 		
 
 		producer = new KafkaProducer<String, Courier>(kafkaProps);
